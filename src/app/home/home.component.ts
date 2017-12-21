@@ -51,11 +51,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.items = _.fill(Array(10), 1);
+    this.items = [];
+    for (let i = 0; i < 6; i++) {
+      this.items.push(i);
+    }
     this.config = {
       initialSlide: this.items.length - 1,
       direction: 'vertical',
-      slidesPerView: 5,
+      slidesPerView: 2,
       keyboard: true,
       pagination: true,
     };
@@ -63,6 +66,9 @@ export class HomeComponent implements OnInit {
       { position: { lat: 51.678418, lng: 7.809007 }, clickable: true },
       { position: { lat: 51.678418, lng: 7.895507 }, clickable: true },
     ];
+    setInterval(() => {
+      this.goToPrevSlide();
+    }, 2000);
     console.log('hello `Home` component');
     /**
      * this.title.getData().subscribe(data => this.data = data);
@@ -70,7 +76,12 @@ export class HomeComponent implements OnInit {
   }
 
   public goToPrevSlide() {
-    this._swiper.directiveRef.prevSlide(2000);
+    this._swiper.directiveRef.prevSlide(1000);
+  }
+
+  public addSlide() {
+    this.items.splice(0, 0, this.items.length);
+    this._swiper.directiveRef.setIndex(this._swiper.directiveRef.getIndex() + 1, 0, true);
   }
 
   public submitState(value: string) {

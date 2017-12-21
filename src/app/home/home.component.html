@@ -12,11 +12,14 @@
     <button mat-fab (click)="goToPrevSlide()">
       P
     </button>
+    <button mat-fab (click)="addSlide()">
+      +
+    </button>
     <swiper #swiper [config]="config">
       <div *ngFor="let item of items">
         <mat-card style="margin: 10px;">
           <mat-card-title-group>
-            <mat-card-title>Title1</mat-card-title>
+            <mat-card-title>Title {{ item }}</mat-card-title>
             <mat-card-subtitle>Subtitle</mat-card-subtitle>
           </mat-card-title-group>
           <!-- <img matCardImage src="http://via.placeholder.com/350x150"> -->
