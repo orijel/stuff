@@ -1,0 +1,13 @@
+/*styles for home content only*/
+
+.sample-content {
+    color: green;
+}
+
+#{"/deep/"} #auto-height-gallery .swiper-container .swiper-wrapper {
+    -webkit-transition-property: height, -webkit-transform;
+    transition-property: height, -webkit-transform;
+    -o-transition-property: transform, height;
+    transition-property: transform, height;
+    transition-property: transform, height, -webkit-transform;
+}

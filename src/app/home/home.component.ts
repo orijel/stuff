@@ -1,3 +1,4 @@
+import { GalleryModalComponent } from './gallery-modal/gallery-modal.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { AppState } from '../app.service';
@@ -7,6 +8,8 @@ import { MarkerOptions } from '@agm/core/services/google-maps-types';
 import { AgmMarker } from '@agm/core/directives/marker';
 import * as _ from 'lodash';
 import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
+import { MatDialog } from '@angular/material';
+import $ from 'jquery'
 
 @Component({
   /**
@@ -24,7 +27,7 @@ import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
   /**
    * Our list of styles in our component. We may add more to compose many styles together.
    */
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   /**
    * Every Angular template is first compiled by the browser before Angular runs it's compiler.
    */
@@ -35,22 +38,65 @@ export class HomeComponent implements OnInit {
    * Set our default values
    */
   public localState = { value: '' };
+  public medias: any;
+  public currentGalleryHeight: string;
   public lat: number = 51.678418;
   public lng: number = 7.809007;
   public markers: MarkerOptions[] = [];
   public items: any[];
   public config: SwiperConfigInterface;
   public slideIndex: number;
+  public galleryConfig: SwiperConfigInterface = {
+    // direction: 'horizontal',
+    // slidesPerView: 1,
+    // effect: 'fade',
+    // autoHeight: true,
+    navigation: true
+  };
   @ViewChild('swiper') public _swiper: SwiperComponent;
   /**
    * TypeScript public modifiers
    */
   constructor(
     public appState: AppState,
-    public title: Title
+    public title: Title,
+    private _dialog: MatDialog
   ) { }
 
   public ngOnInit() {
+    this.medias = [
+      {
+        src: 'http://via.placeholder.com/350x150',
+        type: 'image',
+        height: 600,
+        width: 300
+      },
+      {
+        src: 'http://via.placeholder.com/500x550',
+        type: 'image',
+        height: 500,
+        width: 250
+      },
+      {
+        src: 'http://via.placeholder.com/1050x950',
+        type: 'image',
+        height: 600,
+        width: 300
+      },
+      {
+        src: 'https://youtu.be/XQu8TTBmGhA',
+        type: 'video',
+        height: 500,
+        width: 250
+      },
+      {
+        src: 'https://youtu.be/XQu8TTBmGhA',
+        type: 'video',
+        height: 600,
+        width: 300
+      },
+    ];
+    this.currentGalleryHeight = this.medias[0].height;
     this.items = [];
     for (let i = 0; i < 6; i++) {
       this.items.push(i);
@@ -88,5 +134,16 @@ export class HomeComponent implements OnInit {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+  public openGalleryModal() {
+    this._dialog.open(GalleryModalComponent, {
+      data: this.medias
+    });
+  }
+
+  public onIndexChange(index) {
+    $('#auto-height-gallery .swiper-container .swiper-wrapper')
+      .css('height', (this.medias[index].height + 4) + 'px');
   }
 }

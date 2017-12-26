@@ -1,0 +1,8 @@
+<div class="gallery-modal">
+  <swiper #gallery [config]="galleryConfig" (slideChange)="onSlideChange($event)">
+    <div *ngFor="let media of medias" [ngSwitch]="media.type">
+      <img *ngSwitchCase="'image'" width="media.width" height="media.height" [src]="media.src">
+      <video *ngSwitchCase="'video'" [src]="media.src" width="media.width" height="media.height" controls></video>
+    </div>
+  </swiper>
+</div>

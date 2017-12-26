@@ -15,6 +15,9 @@
     <button mat-fab (click)="addSlide()">
       +
     </button>
+    <button mat-fab (click)="openGalleryModal()">
+      <i class="far fa-arrow-alt-circle-right"></i>
+    </button>
     <swiper #swiper [config]="config">
       <div *ngFor="let item of items">
         <mat-card style="margin: 10px;">
@@ -37,4 +40,10 @@
       </div>
     </swiper>
   </div>
+  <swiper #gallery id="auto-height-gallery" [config]="galleryConfig" (indexChange)="onIndexChange($event)">
+    <div *ngFor="let media of medias" [ngSwitch]="media.type">
+      <img *ngSwitchCase="'image'" [width]="media.width" [height]="media.height" [src]="media.src">
+      <video *ngSwitchCase="'video'" [src]="media.src" [width]="media.width" [height]="media.height" controls></video>
+    </div>
+  </swiper>
 </div>

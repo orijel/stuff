@@ -1,3 +1,4 @@
+import { GalleryModalComponent } from './home/gallery-modal/gallery-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { SwiperModule } from "ngx-swiper-wrapper";
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -50,6 +52,7 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     XLargeDirective,
+    GalleryModalComponent
   ],
   /**
    * Import Angular's modules.
@@ -69,6 +72,7 @@ type StoreType = {
     MatCardModule,
     MatButtonModule,
     SwiperModule,
+    MatDialogModule,
 
     /**
      * This section will import the `DevModuleModule` only in certain build types.
@@ -76,6 +80,9 @@ type StoreType = {
      * This is a simple example, a big app should probably implement some logic
      */
     ...environment.showDevModule ? [DevModuleModule] : [],
+  ],
+  entryComponents: [
+    GalleryModalComponent
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
