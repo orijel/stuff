@@ -11,3 +11,12 @@
     transition-property: transform, height;
     transition-property: transform, height, -webkit-transform;
 }
+
+// #{"/deep/"} #auto-height-gallery .swiper-container {
+//     transition-duration: 300ms;
+//     -webkit-transition-property: width;
+//     transition-property: width;
+//     -o-transition-property: width;
+//     transition-property: width;
+//     transition-property: width;
+// }

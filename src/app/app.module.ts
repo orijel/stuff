@@ -1,3 +1,4 @@
+import { LightboxModule } from './lightbox-module/lightbox.module';
 import { GalleryModalComponent } from './home/gallery-modal/gallery-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -73,6 +74,7 @@ type StoreType = {
     MatButtonModule,
     SwiperModule,
     MatDialogModule,
+    LightboxModule,
 
     /**
      * This section will import the `DevModuleModule` only in certain build types.

@@ -1,3 +1,4 @@
+import { Lightbox } from './../lightbox-module/lightbox.service';
 import { GalleryModalComponent } from './gallery-modal/gallery-modal.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -9,7 +10,7 @@ import { AgmMarker } from '@agm/core/directives/marker';
 import * as _ from 'lodash';
 import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
 import { MatDialog } from '@angular/material';
-import $ from 'jquery'
+import $ from 'jquery';
 
 @Component({
   /**
@@ -39,7 +40,6 @@ export class HomeComponent implements OnInit {
    */
   public localState = { value: '' };
   public medias: any;
-  public currentGalleryHeight: string;
   public lat: number = 51.678418;
   public lng: number = 7.809007;
   public markers: MarkerOptions[] = [];
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   public galleryConfig: SwiperConfigInterface = {
     // direction: 'horizontal',
     // slidesPerView: 1,
-    // effect: 'fade',
+    effect: 'fade',
     // autoHeight: true,
     navigation: true
   };
@@ -60,7 +60,8 @@ export class HomeComponent implements OnInit {
   constructor(
     public appState: AppState,
     public title: Title,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _lightbox: Lightbox
   ) { }
 
   public ngOnInit() {
@@ -96,7 +97,6 @@ export class HomeComponent implements OnInit {
         width: 300
       },
     ];
-    this.currentGalleryHeight = this.medias[0].height;
     this.items = [];
     for (let i = 0; i < 6; i++) {
       this.items.push(i);
@@ -142,8 +142,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public open(index: number) {
+    this._lightbox.open(this.medias, index);
+  }
+
   public onIndexChange(index) {
     $('#auto-height-gallery .swiper-container .swiper-wrapper')
-      .css('height', (this.medias[index].height + 4) + 'px');
+      .css('height', (this.medias[index].height + 4) + 'px')
+    // $('#auto-height-gallery .swiper-container')
+    //   .css('width', (this.medias[index].width + 4) + 'px');
   }
 }

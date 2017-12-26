@@ -40,10 +40,9 @@
       </div>
     </swiper>
   </div>
-  <swiper #gallery id="auto-height-gallery" [config]="galleryConfig" (indexChange)="onIndexChange($event)">
-    <div *ngFor="let media of medias" [ngSwitch]="media.type">
-      <img *ngSwitchCase="'image'" [width]="media.width" [height]="media.height" [src]="media.src">
-      <video *ngSwitchCase="'video'" [src]="media.src" [width]="media.width" [height]="media.height" controls></video>
+  <div>
+    <div *ngFor="let media of medias; let i=index">
+      <img [src]="media.src" width="50" height="50" (click)="open(i)">
     </div>
-  </swiper>
+  </div>
 </div>
