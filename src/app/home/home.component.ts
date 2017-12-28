@@ -1,3 +1,4 @@
+import { LightboxConfig } from './../lightbox-module/lightbox-config.service';
 import { Lightbox } from './../lightbox-module/lightbox.service';
 import { GalleryModalComponent } from './gallery-modal/gallery-modal.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -61,7 +62,8 @@ export class HomeComponent implements OnInit {
     public appState: AppState,
     public title: Title,
     private _dialog: MatDialog,
-    private _lightbox: Lightbox
+    private _lightbox: Lightbox,
+    private _lightboxConfig: LightboxConfig
   ) { }
 
   public ngOnInit() {
@@ -97,6 +99,8 @@ export class HomeComponent implements OnInit {
         width: 300
       },
     ];
+    this._lightboxConfig.showImageNumberLabel = true;
+    this._lightboxConfig.disableScrolling = true;
     this.items = [];
     for (let i = 0; i < 6; i++) {
       this.items.push(i);
