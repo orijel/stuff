@@ -8,7 +8,7 @@
       </agm-info-window>
     </agm-marker>
   </agm-map>
-  <div style="height: 800px; width: 400px">
+  <!-- <div style="height: 800px; width: 400px">
     <button mat-fab (click)="goToPrevSlide()">
       P
     </button>
@@ -25,7 +25,6 @@
             <mat-card-title>Title {{ item }}</mat-card-title>
             <mat-card-subtitle>Subtitle</mat-card-subtitle>
           </mat-card-title-group>
-          <!-- <img matCardImage src="http://via.placeholder.com/350x150"> -->
           <mat-card-content>
             Text content
           </mat-card-content>
@@ -39,10 +38,13 @@
         </mat-card>
       </div>
     </swiper>
-  </div>
-  <div>
-    <div *ngFor="let media of medias; let i=index">
-      <img [src]="media.src" width="50" height="50" (click)="open(i)">
+  </div> -->
+  <div style="width: 800px; background-color: rgb(194, 194, 194); padding: 10px">
+    <div *ngFor="let item of [1,1,1,1,1,1]" class="comment">
+      <img src="http://via.placeholder.com/100x100" alt="" style="align-self: center">
+      <span style="display: inline-block; margin-top: 8px; vertical-align: top">text here</span>
+      <span style="flex: 1 1 auto"></span>
+      <span style="display: inline-block; vertical-align: bottom; align-self: flex-end">hello there</span>
     </div>
   </div>
 </div>

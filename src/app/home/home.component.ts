@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     // autoHeight: true,
     navigation: true
   };
-  @ViewChild('swiper') public _swiper: SwiperComponent;
+  // @ViewChild('swiper') public _swiper: SwiperComponent;
   /**
    * TypeScript public modifiers
    */
@@ -116,23 +116,23 @@ export class HomeComponent implements OnInit {
       { position: { lat: 51.678418, lng: 7.809007 }, clickable: true },
       { position: { lat: 51.678418, lng: 7.895507 }, clickable: true },
     ];
-    setInterval(() => {
-      this.goToPrevSlide();
-    }, 2000);
+    // setInterval(() => {
+    //   this.goToPrevSlide();
+    // }, 2000);
     console.log('hello `Home` component');
     /**
      * this.title.getData().subscribe(data => this.data = data);
      */
   }
 
-  public goToPrevSlide() {
-    this._swiper.directiveRef.prevSlide(1000);
-  }
+  // public goToPrevSlide() {
+  //   this._swiper.directiveRef.prevSlide(1000);
+  // }
 
-  public addSlide() {
-    this.items.splice(0, 0, this.items.length);
-    this._swiper.directiveRef.setIndex(this._swiper.directiveRef.getIndex() + 1, 0, true);
-  }
+  // public addSlide() {
+  //   this.items.splice(0, 0, this.items.length);
+  //   this._swiper.directiveRef.setIndex(this._swiper.directiveRef.getIndex() + 1, 0, true);
+  // }
 
   public submitState(value: string) {
     console.log('submitState', value);
