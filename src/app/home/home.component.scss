@@ -26,6 +26,110 @@
     }
 }
 
+// #{"/deep/"} div.markerLayer {
+//     >div:nth-child(n+2) {
+//         -moz-animation: pulsate 1.5s ease-in-out infinite;
+//         -webkit-animation: pulsate 1.5s ease-in-out infinite;
+//         border: 1pt solid #fff;
+//         /* make a circle */
+//         -moz-border-radius: 51px;
+//         -webkit-border-radius: 51px;
+//         border-radius: 51px;
+//         /* multiply the shadows, inside and outside the circle */
+//         -moz-box-shadow: inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+//         -webkit-box-shadow: inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+//         box-shadow: inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+//         /* set the ring's new dimension and re-center it */
+//         height: 51px!important;
+//         width: 51px!important;
+//         >img {
+//             -moz-animation: negate-pulsate 1.5s ease-in-out infinite;
+//             -webkit-animation: negate-pulsate 1.5s ease-in-out infinite;
+//         }
+//     }
+// }
+
+@-moz-keyframes pulsate {
+    from {
+        -moz-transform: scale(0.25);
+        opacity: 1.0;
+    }
+    95% {
+        -moz-transform: scale(1.3);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: scale(0.3);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes pulsate {
+    from {
+        -webkit-transform: scale(0.25);
+        opacity: 1.0;
+    }
+    95% {
+        -webkit-transform: scale(1.3);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(0.3);
+        opacity: 0;
+    }
+}
+
+$inverse-first: 1/0.25;
+$inverse-second: 1/1.3;
+$inverse-third: 1/0.3;
+@-moz-keyframes negate-pulsate {
+    from {
+        -moz-transform: scale($inverse-first);
+        opacity: 1;
+    }
+    95% {
+        -moz-transform: scale($inverse-second);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: scale($inverse-third);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes negate-pulsate {
+    from {
+        -webkit-transform: scale($inverse-first);
+        opacity: 1;
+    }
+    95% {
+        -webkit-transform: scale($inverse-second);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: scale($inverse-third);
+        opacity: 1;
+    }
+}
+
+$num-interations: 3;
+.check-anim {
+    -moz-animation: pulsate 1.5s ease-in-out $num-interations;
+    -webkit-animation: pulsate 1.5s ease-in-out $num-interations;
+    border: 1pt solid #fff;
+    /* make a circle */
+    -moz-border-radius: 51px;
+    -webkit-border-radius: 51px;
+    border-radius: 51px;
+    /* multiply the shadows, inside and outside the circle */
+    -moz-box-shadow: inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    -webkit-box-shadow: inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    box-shadow: inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    /* set the ring's new dimension and re-center it */
+    height: 51px!important;
+    width: 51px!important;
+}
+
 // #{"/deep/"} #auto-height-gallery .swiper-container {
 //     transition-duration: 300ms;
 //     -webkit-transition-property: width;

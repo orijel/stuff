@@ -1,13 +1,15 @@
 <div>
   <h1 x-large class="sample-content">Your Content Here</h1>
   <agm-map [latitude]="lat" [longitude]="lng" style="height: 600px">
-    <agm-marker *ngFor="let marker of markers" [latitude]="marker.position.lat" [longitude]="marker.position.lng" [markerClickable]="marker.clickable">
+    <agm-marker *ngFor="let marker of markers" [latitude]="marker.position.lat" [longitude]="marker.position.lng" [markerClickable]="marker.clickable"
+      [animation]="'DROP'" [title]="marker.title">
       <agm-info-window>
         <div style="color: rgb(60, 255, 0)">stuff</div>
         <img src="http://via.placeholder.com/100x100" alt="event-img" width="100px">
       </agm-info-window>
     </agm-marker>
   </agm-map>
+  <button (click)="addMarker()">add marker</button>
   <!-- <div style="height: 800px; width: 400px">
     <button mat-fab (click)="goToPrevSlide()">
       P
@@ -39,12 +41,12 @@
       </div>
     </swiper>
   </div> -->
-  <div style="width: 800px; background-color: rgb(194, 194, 194); padding: 10px">
+  <!-- <div style="width: 800px; background-color: rgb(194, 194, 194); padding: 10px">
     <div *ngFor="let item of [1,1,1,1,1,1]" class="comment">
       <img src="http://via.placeholder.com/100x100" alt="" style="align-self: center">
       <span style="display: inline-block; margin-top: 8px; vertical-align: top">text here</span>
       <span style="flex: 1 1 auto"></span>
       <span style="display: inline-block; vertical-align: bottom; align-self: flex-end">hello there</span>
     </div>
-  </div>
+  </div> -->
 </div>

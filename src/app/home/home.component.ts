@@ -1,3 +1,4 @@
+import { MarkerOptions } from '@agm/core/services/google-maps-types';
 import { LightboxConfig } from './../lightbox-module/lightbox-config.service';
 import { Lightbox } from './../lightbox-module/lightbox.service';
 import { GalleryModalComponent } from './gallery-modal/gallery-modal.component';
@@ -6,12 +7,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
-import { MarkerOptions } from '@agm/core/services/google-maps-types';
-import { AgmMarker } from '@agm/core/directives/marker';
 import * as _ from 'lodash';
 import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
 import { MatDialog } from '@angular/material';
 import $ from 'jquery';
+import { trigger, transition, style, state, animate } from '@angular/animations';
+import { MarkerAnimations } from 'app/animations/app.animation';
+
+let animationObj = new MarkerAnimations();
+let animStates = animationObj.SetTrigger('visible');
+export const AppAnimations = [].concat(animStates);
 
 @Component({
   /**
@@ -33,7 +38,8 @@ import $ from 'jquery';
   /**
    * Every Angular template is first compiled by the browser before Angular runs it's compiler.
    */
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  animations: AppAnimations
 })
 export class HomeComponent implements OnInit {
   /**
@@ -41,6 +47,8 @@ export class HomeComponent implements OnInit {
    */
   public localState = { value: '' };
   public medias: any;
+  public anims: any;
+  public visible: boolean = false;
   public lat: number = 51.678418;
   public lng: number = 7.809007;
   public markers: MarkerOptions[] = [];
@@ -114,15 +122,28 @@ export class HomeComponent implements OnInit {
     };
     this.markers = [
       { position: { lat: 51.678418, lng: 7.809007 }, clickable: true },
-      { position: { lat: 51.678418, lng: 7.895507 }, clickable: true },
+      { position: { lat: 51.678418, lng: 7.895507 }, clickable: true }
     ];
-    // setInterval(() => {
-    //   this.goToPrevSlide();
-    // }, 2000);
+    // to use any animation set to empty array:
+    // this.anims = [];
+    // and plug in to [animation] property of agm-marker
+    // afterwards mess with the css in div.markerLayer
+
     console.log('hello `Home` component');
     /**
      * this.title.getData().subscribe(data => this.data = data);
      */
+  }
+
+  public addMarker() {
+    const rand = Math.random();
+    this.markers.push({
+      position: {
+        lat: 50 + rand,
+        lng: 50 + rand
+      },
+      clickable: true
+    });
   }
 
   // public goToPrevSlide() {

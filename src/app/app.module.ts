@@ -1,3 +1,4 @@
+import { AgmCoreModule } from './agm-core-module/core.module';
 import { LightboxModule } from './lightbox-module/lightbox.module';
 import { GalleryModalComponent } from './home/gallery-modal/gallery-modal.component';
 import { NgModule } from '@angular/core';
@@ -6,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AgmCoreModule } from '@agm/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { SwiperModule } from 'ngx-swiper-wrapper';
